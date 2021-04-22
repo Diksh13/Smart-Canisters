@@ -1,0 +1,468 @@
+body {
+	margin:  0;
+}
+.txt1 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: black;
+  line-height: 2;
+  text-align:center;
+  text-decoration:none;
+}
+.txt2 {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color:#f51308;
+  line-height: 2;
+  text-align:center;
+
+}
+.invalid
+{
+
+}
+
+.page-content {
+	width: 100%;
+	
+	margin:  0 auto;
+	/*background: #9152f8;
+  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+  background: -o-linear-gradient(top, #7579ff, #b224ef);
+  background: -moz-linear-gradient(top, #7579ff, #b224ef);
+  background: linear-gradient(top, #7579ff, #b224ef);*/
+
+	/*background-image: -moz-linear-gradient( 136deg, rgb(0,158,253) 0%, rgb(42,245,152) 100%);
+    background-image: -webkit-linear-gradient( 136deg, rgb(0,158,253) 0%, rgb(42,245,152) 100%);
+    background-image: -ms-linear-gradient( 136deg, rgb(0,158,253) 0%, rgb(42,245,152) 100%);*/
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	-o-justify-content: center;
+	-ms-justify-content: center;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-o-align-items: center;
+	-ms-align-items: center;
+	-moz-align-items: center;
+	-webkit-align-items: center;
+
+}
+.form-v8
+{
+background: #9152f8;
+  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+  background: -o-linear-gradient(top, #7579ff, #b224ef);
+  background: -moz-linear-gradient(top, #7579ff, #b224ef);
+  background: linear-gradient(top, #7579ff, #b224ef);
+  height:973px;
+
+}
+.form-v8-content  {
+	background: #fff;
+	width: 470px;
+	border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	-ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+
+  	margin: 177px 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: black;
+	position: relative;
+	display: flex;
+	display: -webkit-flex;
+}
+.form-v8-content .form-left {
+	margin-bottom: -4px;
+}
+.form-v8-content .form-left img {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+.form-v8-content .form-right {
+    padding: 30px 0;
+	position: relative;
+	width: 100%;
+	background: #fffbfb;
+
+  /*background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+  background: -o-linear-gradient(top, #7579ff, #b224ef);
+  background: -moz-linear-gradient(top, #7579ff, #b224ef);
+  background: linear-gradient(top, #7579ff, #b224ef);*/
+
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+.form-v8-content .tab {
+	margin: 5px 0 48px;
+	width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -o-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+.form-v8-content .tab .tab-inner {
+	width: 100%;
+}
+.form-v8-content .tab .tablinks {
+	background: transparent;
+	border: none;
+	outline: none;
+	-o-outline: none;
+	-ms-outline: none;
+	-moz-outline: none;
+	-webkit-outline: none;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 28px;
+	font-weight: 400;
+	color: black;;
+	padding-bottom: 22px;
+	border-bottom: 3px solid;
+	border-bottom-color: black;
+	width: 100%;
+}
+.form-v8-content .tab .tablinks.active {
+	font-weight: 600;
+	color: black;;
+	border-bottom-color: #66e65e;
+}
+.form-v8-content .form-detail {
+	padding:  0 40px;
+}
+.form-v8-content .form-row {
+    width: 100%;
+    position: relative;
+}
+.form-v8-content .form-row .form-row-inner {
+	position: relative;
+	width: 100%;
+}
+.form-v8-content .form-row .form-row-inner .label {
+	position: absolute;
+    top: -2px;
+    left: 10px;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+    transform-origin: 0 0;
+    transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+}
+.form-v8-content .form-row .form-row-inner .border {
+	position: absolute;
+    bottom: 31px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: #53c83c;
+    transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all .15s ease;
+    -moz-transition: all .15s ease;
+    -webkit-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    -ms-transition: all .15s ease;
+}
+.form-v8-content .form-detail .input-text {
+	margin-bottom: 31px;
+}
+.form-v8-content .form-detail input {
+	width: 100%;
+    padding: 0px 10px 15px 10px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid;
+    border-bottom-color: black;
+    background: transparent;
+    appearance: unset;
+    -moz-appearance: unset;
+    -webkit-appearance: unset;
+    -o-appearance: unset;
+    -ms-appearance: unset;
+    outline: none;
+    -moz-outline: none;
+    -webkit-outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+.form-v8-content .form-detail .form-row .input-text:focus{
+	border-bottom: 1px solid #53c83c;
+	background: transparent;
+}
+.form-v8-content .form-detail .form-row .input-text:focus + .label, 
+.form-v8-content .form-detail .form-row .input-text:valid + .label {
+	transform: translateY(-26px) scale(1);
+	-moz-transform: translateY(-26px) scale(1);
+    -webkit-transform: translateY(-26px) scale(1);
+    -o-transform: translateY(-26px) scale(1);
+    -ms-transform: translateY(-26px) scale(1);
+
+}
+.form-v8-content .form-detail .form-row .input-text:focus  + .border, 
+.form-v8-content .form-detail .form-row .input-text:valid  + .border {
+	transform: scaleX(1);
+	-moz-transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -o-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+
+}
+.form-v8-content .form-detail .register {
+
+	border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 160px;
+	border: none;
+	margin: 5px 0 50px 0px;
+	cursor: pointer;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-weight: 700;
+	font-size: 18px;
+	background: #9152f8;
+  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+  background: -o-linear-gradient(top, #7579ff, #b224ef);
+  background: -moz-linear-gradient(top, #7579ff, #b224ef);
+  background: linear-gradient(top, #7579ff, #b224ef);
+}
+.form-v8-content .form-detail .register:hover {
+	background: black;
+}
+.form-v8-content .form-detail .form-row-last input {
+	padding: 11px;
+}
+/* Responsive */
+@media screen and (max-width: 991px) {
+	.form-v8-content {
+		margin: 180px 20px;
+		flex-direction:  column;
+		-o-flex-direction:  column;
+		-ms-flex-direction:  column;
+		-moz-flex-direction:  column;
+		-webkit-flex-direction:  column;
+	}
+	.form-v8-content .form-left {
+		width: 100%;
+	}
+	.form-v8-content .form-left img {
+		width: 100%;
+		border-bottom-left-radius: 0px;
+	    border-top-right-radius: 8px;
+	}
+	.form-v8-content .form-right {
+		width: auto;
+		border-top-right-radius: 0;
+		border-bottom-left-radius: 8px;
+	}
+	.form-v8-content .tab {
+		margin-top: 45px;
+	}
+	.form-v8-content .form-detail .register {
+		margin-bottom: 80px;
+	}
+}
+
+@media screen and (max-width: 325px) {
+	.form-v8-content .tab {
+		flex-direction: column;
+		-o-flex-direction: column;
+		-ms-flex-direction: column;
+		-moz-flex-direction: column;
+		-webkit-flex-direction: column;
+	}
+}
+
+.sel
+{
+box-sizing: inherit;
+    font-weight: 400;
+    font-size: 14px;
+line-height: 50px;
+padding-left: 0;
+color: #555;
+font-size: 16px;
+font-family: inherit;
+padding-left: 22px;
+padding-right: 50px;
+}
+
+
+// Learn about this solution to creating custom select styles:
+// @link https://moderncss.dev/custom-select-styles-with-pure-css/
+
+
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+
+  // Stack above custom arrow
+  z-index: 1;
+
+  // Remove dropdown arrow in IE10 & IE11
+  // @link https://www.filamentgroup.com/lab/select-css.html
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Remove focus outline, will add on alternate element
+  outline: none;
+}
+
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  position: relative;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
+
+  min-width: 15ch;
+  max-width: 30ch;
+
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+
+  // Optional styles
+  // remove for transparency
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+  // Custom arrow
+  &:not(.select--multiple)::after {
+    content: "";
+    justify-self: end;
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+}
+
+// Interim solution until :focus-within has better support
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--select-focus);
+  border-radius: inherit;
+}
+
+select[multiple] {
+  padding-right: 0;
+
+  /*
+   * Safari will not reveal an option
+   * unless the select height has room to
+   * show all of it
+   * Firefox and Chrome allow showing
+   * a partial option
+   */
+  height: 6rem;
+
+  option {
+    white-space: normal;
+
+    // Only affects Chrome
+    outline-color: var(--select-focus);
+  }
+
+  /*
+   * Experimental - styling of selected options
+   * in the multiselect
+   * Not supported crossbrowser
+   */
+  //   &:not(:disabled) option {
+  //     border-radius: 12px;
+  //     transition: 120ms all ease-in;
+
+  //     &:checked {
+  //       background: linear-gradient(hsl(242, 61%, 76%), hsl(242, 61%, 71%));
+  //       padding-left: 0.5em;
+  //       color: black !important;
+  //     }
+  //   }
+}
+
+.select--disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  background-image: linear-gradient(to top, #ddd, #eee 33%);
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.select + label {
+  margin-top: 2rem;
+}
+
+/*body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  grid-gap: 0.5rem;
+  font-family: "Baloo 2", sans-serif;
+  background-color: #e9f2fd;
+  padding: 1rem;
+}
+*/
