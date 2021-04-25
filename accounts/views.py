@@ -20,16 +20,12 @@ class LoginPage(TemplateView):
             g = Register.objects.get(r_email=email)
             if g.r_password==password:
                 name=g.r_name
-                if g.r_role=="customer":
-
-
-                    return render(request, 'dashboard.html', {"role": "Customer","name": name})
-                else:
-                    return render(request, 'ind.html', {"role": "Vendor", "name": name})
+                return render(request, 'address.html', {"role":g.r_role,"name": name,"u_email":email})
             else:
                 return render(request, 'index.html', {"et":"Invalid ID/Password"})
         except:
             return render(request, 'index.html', {"et": "Invalid ID/Password"})
+
 
 class RegisterPage(TemplateView):
     def post(self, request, **kwargs):
@@ -39,11 +35,6 @@ class RegisterPage(TemplateView):
         role = request.POST['your_role']
         l = Register(r_name=name, r_email=email, r_password=password, r_role=role)
         l.save()
-        # print("hello")
-        # print(name)
-        # print(email)
-        # print(password)
-        # print(role)
         return render(request, 'index.html', context=None)
 
 

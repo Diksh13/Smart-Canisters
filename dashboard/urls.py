@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from dashboard import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('user/', views.DashboardPage.as_view()),
+    path('user', views.AddressPage.as_view()),
     # path('display',views.displayempPage.as_view()),
 
 ]

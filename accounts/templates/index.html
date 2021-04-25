@@ -16,9 +16,6 @@
 <body class="form-v8" >
 	<div class="page-content">
 		<div class="form-v8-content">
-<!--			<div class="form-left">-->
-<!--				<img src="images/form-v8.jpg" alt="form">-->
-<!--			</div>-->
 			<div class="form-right">
 				<div class="tab">
 					<div class="tab-inner">
@@ -28,21 +25,12 @@
 						<button class="tablinks" onclick="openCity(event, 'sign-up')">REGISTER</button>
 					</div>
 				</div>
-<!--				<form class="form-detail" action="dashboard/user" >-->
 					<form name="login" class="form-detail" action="login-success" method="post" accept-charset="utf-8">
 					{% csrf_token %}
 
 					<div class="tabcontent" id="sign-in">
-<!--						<div class="form-row">-->
-<!--							<label class="form-row-inner">-->
-<!--								<input type="text" name="full_name" id="full_name" class="input-text" required>-->
-<!--								<span class="label">Username</span>-->
-<!--		  						<span class="border"></span>-->
-<!--							</label>-->
-<!--						</div>-->
 						<div class="form-row">
 							<label class="form-row-inner">
-<!--								<label for="your_email"><i class="zmdi zmdi-account material-icons-name"></i></label>-->
 								<input type="text" name="your_email" id="your_email" class="input-text" required>
 								<span class="label">E-Mail</span>
 		  						<span class="border"></span>
@@ -63,19 +51,6 @@
 
 
 						<br>
-<!--						<div class="form-row">-->
-<!--							<label class="form-row-inner"></label>-->
-<!--							</div>-->
-
-
-
-<!--						<div class="form-row">-->
-<!--							<label class="form-row-inner">-->
-<!--								<input type="password" name="comfirm_password" id="comfirm_password" class="input-text" required>-->
-<!--								<span class="label">Comfirm Password</span>-->
-<!--								<span class="border"></span>-->
-<!--							</label>-->
-<!--						</div>-->
 						<div class="form-row-last">
 							<input type="submit" name="register" class="register" value="LOGIN">
 							<div class="text-center p-t-90">
@@ -120,7 +95,6 @@
 								<span class="border"></span>
 							</label>
 						</div>
-<!--						<div class="registrationFormAlert" style="color:green;" id="CheckPasswordMatch">-->
 						<div class="form-row">
 
                             <div class="select">
@@ -136,13 +110,6 @@
 
                         </div>
 						<br>
-<!--						<div class="form-row">-->
-<!--							<label class="form-row-inner">-->
-<!--								<input type="password" name="comfirm_password_1" id="comfirm_password_1" class="input-text" required>-->
-<!--								<span class="label">Comfirm Password</span>-->
-<!--								<span class="border"></span>-->
-<!--							</label>-->
-<!--						</div>-->
 						<div class="form-row-last">
 							<input type="submit" name="register" class="register" value="REGISTER">
 						</div>
@@ -169,44 +136,12 @@
 		    document.getElementById(cityName).style.display = "block";
 		    evt.currentTarget.className += " active";
 		}
-
-
-<!--function validate()-->
-<!--{-->
-<!--  var a=documents.forms["register"]["password_1"].value;-->
-<!--  var b=documents.forms["register"]["comfirm_password_1"].value;-->
-<!--  if(!(a==b))-->
-<!--  {-->
-<!--    alert("both passwords are not matching");-->
-<!--    return false;-->
-<!--  }-->
-<!--  return true;-->
-<!--}-->
-
-
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 
 		setTimeout(function() {$("#invalid").fadeOut('fast');},5000);
-
-
-
 	</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--<script>-->
-
-<!--		 function checkPasswordMatch() {-->
-<!--        var password = $("#password_1").val();-->
-<!--        var confirmPassword = $("#comfirm_password_1").val();-->
-<!--        if (password != confirmPassword)-->
-<!--            $("#CheckPasswordMatch").html("Passwords does not match!");-->
-<!--        else-->
-<!--            $("#CheckPasswordMatch").html("Passwords match.");-->
-<!--    }-->
-<!--    $(document).ready(function () {-->
-<!--       $("#txtConfirmPassword").keyup(checkPasswordMatch);-->
-<!--    });-->
-<!--</script>-->
 
 </body>
 </html>
