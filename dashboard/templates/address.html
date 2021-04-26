@@ -127,11 +127,27 @@ input::-webkit-inner-spin-button {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="d-flex flex-row">
-                            <div class="inputbox mt-3 mr-2"> <input type="text" name="house-no" id="house-no" class="form-control" required="required"> <span>House No.</span> </div>
+                            <div class="inputbox mt-3 mr-2">
+                                {% if role %}
+                                 <input type="text" name="house-no" id="house-no" class="form-control" required="required"><span>House No.</span> 
+                                 
+                                 {% else %}
+
+                                 <input type="text" name="shop-no" id="shop-no" class="form-control" required="required"><span>Shop No.</span> 
+                                 {% endif %}
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="inputbox mt-3 mr-2"> <input type="text" name="apartment" id="apartment" class="form-control" required="required"><span>Apartment Name</span> </div>
+                    
+                        <div class="inputbox mt-3 mr-2"> 
+                        {% if role %}
+                        <input type="text" name="apartment" id="apartment" class="form-control" required="required"><span>Apartment Name</span>
+                        
+                        {% else %}
+                        <input type="text" name="shop" id="shop" class="form-control" required="required"><span>Shop Name</span>
+                    {% endif %}
+                         </div>
                     </div>
 
                 </div>
@@ -158,11 +174,24 @@ input::-webkit-inner-spin-button {
                     </div>
                     </div>
 
-            <div class="mt-4 mb-4 d-flex justify-content-between"> <button type="submit" form="address-form" class="btn btn-success px-3">Save</button> <input type="hidden" id="email" name="email" value="{{u_email}}" ></div>
+            <div class="mt-4 mb-4 d-flex justify-content-between"> 
+            <button type="submit" form="address-form" class="btn btn-success px-3">Save</button>
+             <input type="hidden" id="email" name="email" value="{{u_email}}" >
+              {% if role %}
+                                 <input type="hidden" id="role" name="role" value="{{role}}" >
+                                 
+                {% else %}
+
+                                 <input type="hidden" id="role" name="role" value="{{role}}" >
+                {% endif %}
+             
+             </div>
+
         </div>
 
     </div>
 </div>
 </form>
+                            </div>
                             </body>
                         </html>

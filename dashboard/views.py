@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from .models import CustomerAddress
+from .models import *
 from accounts.models import Register
 class DashboardPage(TemplateView):
     def get(self, request, **kwargs):
@@ -10,18 +10,23 @@ class DashboardPage(TemplateView):
 class AddressPage(TemplateView):
     def post(self, request, **kwargs):
         user_email=Register.objects.get(r_email=request.POST['email'])
-        house_no = request.POST['house-no']
-        apartment = request.POST['apartment']
         street = request.POST['street']
         landmark = request.POST['landmark']
         city = request.POST['city']
         state = request.POST['state']
         country = request.POST['country']
         pincode = request.POST['pincode']
-        c = CustomerAddress(c_house_no=house_no, c_apartment=apartment, c_street=street, c_landmark=landmark,
-                            c_city=city, c_state=state, c_country=country, c_pincode=pincode,user=user_email)
+        user_role=request.POST['role']
+        if user_role:
+            house_no = request.POST['house-no']
+            apartment = request.POST['apartment']
+            c = CustomerAddress(c_house_no=house_no, c_apartment=apartment, c_street=street, c_landmark=landmark,c_city=city, c_state=state, c_country=country, c_pincode=pincode,user=user_email)
+        else:
+            shop_no=request.POST['shop-no']
+            shop = request.POST['shop']
+            c = VendorAddress(v_shop_no=shop_no, v_shop=shop, v_street=street, v_landmark=landmark,v_city=city, v_state=state, v_country=country, v_pincode=pincode,vendor=user_email)
         c.save()
-        return render(request, 'dashboard.html', {"et": user_email})
+        return render(request, 'dashboard.html', {"et": user_email,"role":user_role})
 
 # class displayempPage(TemplateView):
 #     def get(self, request, **kwargs):

@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from accounts.models import Register
+from accounts.models import *
+from datetime import datetime
 
 
 # from emp.models import employee
@@ -12,19 +13,52 @@ class IndexPage(TemplateView):
     def get(self,request,**kwargs):
         return render(request, 'index.html', context=None)
 
+
+# if User.objects.filter(username=request.POST['username'], 
+#             password=request.POST['password']).exists():
+#             global user
+#             user = User.objects.get(username=request.POST['username'], 
+#             password=request.POST['password'])
+
+
+#             act = User.objects.get(id=user.id)
+#             act.login_time = datetime.now()
+#             act.save()
+#             return render(request, 'dash.html', {'user': user, })
+
 class LoginPage(TemplateView):
     def post(self, request, **kwargs):
-        email = request.POST['your_email']
-        password = request.POST['password']
-        try:
-            g = Register.objects.get(r_email=email)
-            if g.r_password==password:
-                name=g.r_name
-                return render(request, 'address.html', {"role":g.r_role,"name": name,"u_email":email})
+        if Register.objects.filter(r_email=request.POST['your_email'],r_password=request.POST['password']).exists():
+            global user
+            user=Register.objects.get(r_email=request.POST['your_email'])
+            login_time=datetime.now()
+            login=Login(username=user.r_email,password=user.r_password,login_time=login_time)
+            login.save()
+            if Login.objects.filter(username=request.POST['your_email']).count()>1:
+                return render(request, 'dashboard.html', {"u_email":user.r_email})
             else:
-                return render(request, 'index.html', {"et":"Invalid ID/Password"})
-        except:
-            return render(request, 'index.html', {"et": "Invalid ID/Password"})
+                if user.r_role=="customer":
+                    return render(request, 'address.html', {"role": "customer","u_email":user.r_email})
+                else:
+                    return render(request, 'address.html', {"role":"","u_email":user.r_email})
+        else:
+            return render(request, 'index.html', {"et":"Invalid ID/Password"})
+        
+
+
+
+        # email = request.POST['your_email']
+        # password = request.POST['password']
+        # g = Register.objects.get(r_email=email)
+        # if g.r_password==password:
+            
+        #     if g.r_role=="customer":
+        #         return render(request, 'address.html', {"role": "customer","u_email":email})
+        #     else:
+        #         return render(request, 'address.html', {"role":"","u_email":email})
+        # else:
+        #     return render(request, 'index.html', {"et":"Invalid ID/Password"})
+        
 
 
 class RegisterPage(TemplateView):
