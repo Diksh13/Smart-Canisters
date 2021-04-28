@@ -1,12 +1,10 @@
 from django.urls import path
-# from dashboard import *
+from django.conf.urls import url
 from accounts import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('login-success', views.LoginPage.as_view()),
-    path('login',views.RegisterPage.as_view()),
-    # path('dashboard/)
-    # path('display',views.displayempPage.as_view()),
+    url(r'^login/$',views.LoginPage.as_view(),name='login-success'),
+    url(r'^login$',views.RegisterPage.as_view(),name='register-login'),
+    
 
 ]

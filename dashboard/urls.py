@@ -1,10 +1,15 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
 from dashboard import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('user', views.AddressPage.as_view()),
+    url(r'^(?P<pk>\d+)/$',views.AddressPage.as_view(),name='user_dashboard'),
+    url(r'^EditAddress/(?P<pk>\d+)/$',views.EditAddressPage.as_view(),name='dashboard_edit_address'),
+    url(r'^user/(?P<pk>\d+)/$',views.UpdateAddress.as_view(),name='update_address'),
+    
+    
     # path('display',views.displayempPage.as_view()),
 
 ]

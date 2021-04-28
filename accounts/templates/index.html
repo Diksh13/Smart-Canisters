@@ -25,7 +25,11 @@
 						<button class="tablinks" onclick="openCity(event, 'sign-up')">REGISTER</button>
 					</div>
 				</div>
-					<form name="login" class="form-detail" action="login-success" method="post" accept-charset="utf-8">
+				
+ 
+
+					<form name="login" class="form-detail" action="{% url 'login-success' %}" method="post" accept-charset="utf-8">
+					
 					{% csrf_token %}
 
 					<div class="tabcontent" id="sign-in">
@@ -64,7 +68,7 @@
 
 
 				</form>
-				<form name="register" class="form-detail" action="login" method="post" accept-charset="utf-8">
+				<form name="register" class="form-detail" action="{% url 'register-login' %}" method="post" accept-charset="utf-8">
 					{% csrf_token %}
 
 					<div class="tabcontent" id="sign-up"  name="reg">

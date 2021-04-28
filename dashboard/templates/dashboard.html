@@ -1,14 +1,4 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,14 +22,15 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="">
+{% comment %} <input type="hidden" id="u_email" class="u_email" value="{{user}}"> {% endcomment %}
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{%static 'img/sidebar-1.jpg' %}">
+    <div class="sidebar" data-color="purple" data-background-color="white">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <div class="logo"><a href="#" class="simple-text logo-normal">
           Smart-Canisters
         </a></div>
       <div class="sidebar-wrapper">
@@ -65,7 +56,7 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="address.html">
+            <a class="nav-link" href="{% url 'dashboard_edit_address' pk=user.r_id %}">
               <i class="material-icons">library_books</i>
 <!--              <p>Typography</p>-->
               <p>Address</p>
@@ -587,41 +578,6 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </div>
-<!--      <footer class="footer">-->
-<!--        <div class="container-fluid">-->
-<!--          <nav class="float-left">-->
-<!--            <ul>-->
-<!--              <li>-->
-<!--                <a href="https://www.creative-tim.com">-->
-<!--                  Creative Tim-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="https://creative-tim.com/presentation">-->
-<!--                  About Us-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="http://blog.creative-tim.com">-->
-<!--                  Blog-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="https://www.creative-tim.com/license">-->
-<!--                  Licenses-->
-<!--                </a>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </nav>-->
-<!--          <div class="copyright float-right">-->
-<!--            &copy;-->
-<!--            <script>-->
-<!--              document.write(new Date().getFullYear())-->
-<!--            </script>, made with <i class="material-icons">favorite</i> by-->
-<!--            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </footer>-->
     </div>
   </div>
   <div class="fixed-plugin">
