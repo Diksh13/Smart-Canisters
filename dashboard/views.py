@@ -4,6 +4,7 @@ from .models import *
 from accounts.models import *
 from accounts.views import LoginPage
 from accounts import views
+from django.db import connection
 class DashboardPage(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'dashboard.html', context=None)
@@ -11,7 +12,7 @@ class DashboardPage(TemplateView):
 
 class AddressPage(TemplateView):
     def post(self, request, pk=None):
-        user_id=Register.objects.get(r_id=request.POST['userid'])
+        user_id=Register.objects.get(r_id=pk)
         street = request.POST['street']
         landmark = request.POST['landmark']
         city = request.POST['city']
@@ -22,13 +23,15 @@ class AddressPage(TemplateView):
         if user_role:
             house_no = request.POST['house-no']
             apartment = request.POST['apartment']
-            c = CustomerAddress(c_house_no=house_no, c_apartment=apartment, c_street=street, c_landmark=landmark,c_city=city, c_state=state, c_country=country, c_pincode=pincode,user=user_id)
+            c = CustomerAddress(c_house_no=house_no, c_apartment=apartment, street=street, landmark=landmark,city=city, state=state, country=country, pincode=pincode,user=user_id)
+            c.save()
+            return render(request, 'dashboard.html', {"user": user_id,"role":"customer"})
         else:
             shop_no=request.POST['shop-no']
             shop = request.POST['shop']
-            c = VendorAddress(v_shop_no=shop_no, v_shop=shop, v_street=street, v_landmark=landmark,v_city=city, v_state=state, v_country=country, v_pincode=pincode,vendor=user_id)
-        c.save()
-        return render(request, 'dashboard.html', {"et": user_id,"role":user_role})
+            c = VendorAddress(v_shop_no=shop_no, v_shop=shop, street=street, landmark=landmark,city=city, state=state, country=country, pincode=pincode,vendor=user_id)
+            c.save()
+            return render(request, 'dashboard.html', {"user": user_id,"role":""})
 
 class UpdateAddress(TemplateView):
     def post(self,request,pk=None):
@@ -74,6 +77,22 @@ class EditAddressPage(TemplateView):
                 return render(request, 'EditAddress.html', {"role":"","address":vaddress,"user":user})
         else:   
             return render(request, 'Error.html')
+
+
+class AssociatedUsers(TemplateView):
+    def get(self,request,pk=None):
+        if pk:
+            user=Register.objects.get(r_id=pk)
+            if user.r_role=="vendor":
+                vcity=VendorAddress.objects.get(vendor_id=pk)
+                with connection.cursor() as cursor:
+                    cursor.execute("select r.r_name,r.r_email,c.* from accounts_register r JOIN dashboard_customeraddress c on r.r_id=c.user_id where r.r_role='customer' and c.city=%s",[vcity.city])
+                    row=cursor.fetchall()
+                return render(request, 'tables.html',{"row":row})
+
+            else:
+                return render(request,'Error.html',{"cars":"!!"})
+        
 
 
 # class displayempPage(TemplateView):

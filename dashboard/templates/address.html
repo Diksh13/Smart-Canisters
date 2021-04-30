@@ -118,7 +118,7 @@ input::-webkit-inner-spin-button {
     <div class="mb-4">
         <h2>Address Details</h2>
     </div>
-    <form id="address-form" action="{% url 'user_dashboard' pk=user_id %}" method="post" accept-charset="utf-8">
+    <form id="address-form" action="{% url 'user_dashboard' pk=user.r_id %}" method="post" accept-charset="utf-8">
 					{% csrf_token %}
     <div class="row">
         <div class="col-md-12">
@@ -176,7 +176,7 @@ input::-webkit-inner-spin-button {
 
             <div class="mt-4 mb-4 d-flex justify-content-between"> 
             <button type="submit" form="address-form" class="btn btn-success px-3">Save</button>
-             <input type="hidden" id="userid" name="userid" value="{{user_id}}" >
+             <input type="hidden" id="userid" name="userid" value="{{user.r_id}}" >
               {% if role %}
                                  <input type="hidden" id="role" name="role" value="{{role}}" >
                                  

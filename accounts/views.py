@@ -9,7 +9,7 @@ from datetime import datetime
 class IndexPage(TemplateView):
     def get(self,request,**kwargs):
         return render(request, 'index.html', context=None)
-
+ 
 
 class LoginPage(TemplateView):
     def post(self, request, **kwargs):
@@ -19,7 +19,10 @@ class LoginPage(TemplateView):
             login=Login(username=user.r_email,password=user.r_password,login_time=login_time)
             login.save()
             if Login.objects.filter(username=request.POST['your_email']).count()>1:
-                return render(request, 'dashboard.html', {"user":user})
+                if user.r_role=="customer":
+                    return render(request, 'dashboard.html', {"user":user,"role":"customer"})
+                else:
+                    return render(request, 'dashboard.html', {"user":user,"role":""})
             else:
                 if user.r_role=="customer":
                     return render(request, 'address.html', {"role": "customer","u_email":user.r_email,"user":user})

@@ -24,7 +24,7 @@
 <body class="">
 {% comment %} <input type="hidden" id="u_email" class="u_email" value="{{user}}"> {% endcomment %}
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="sidebar">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -35,7 +35,7 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
+          <li class="nav-item   ">
             <a class="nav-link" href="./dashboard.html">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
@@ -43,16 +43,20 @@
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./user.html">
-              <i class="material-icons">person</i>
+              <i class="material-icons">bubble_chart</i>
 <!--              <p>User Profile</p>-->
-              <p>Menu 1</p>
+              <p>Grocery</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./tables.html">
+            <a class="nav-link" href="{% url 'table-details' pk=user.r_id %}">
               <i class="material-icons">content_paste</i>
-<!--              <p>Table List</p>-->
-              <p>Menu 2</p>
+          {% comment %} <p>Table List</p> {% endcomment %}
+          {% if role %}
+              <p>Vendor</p>
+            {% else %}
+            <p>Customers</p>
+            {% endif %}
             </a>
           </li>
           <li class="nav-item ">
@@ -64,7 +68,7 @@
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
+              <i class="material-icons">person</i>
 <!--              <p>Icons</p>-->
               <p>Menu 4</p>
             </a>
