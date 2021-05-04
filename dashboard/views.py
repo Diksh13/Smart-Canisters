@@ -86,13 +86,23 @@ class AssociatedUsers(TemplateView):
             if user.r_role=="vendor":
                 vcity=VendorAddress.objects.get(vendor_id=pk)
                 with connection.cursor() as cursor:
-                    cursor.execute("select r.r_name,r.r_email,c.* from accounts_register r JOIN dashboard_customeraddress c on r.r_id=c.user_id where r.r_role='customer' and c.city=%s",[vcity.city])
+                    cursor.execute("select r.r_id,r.r_name,r.r_email,c.* from accounts_register r JOIN dashboard_customeraddress c on r.r_id=c.user_id where r.r_role='customer' and c.city=%s",[vcity.city])
                     row=cursor.fetchall()
-                return render(request, 'tables.html',{"row":row})
+                return render(request, 'customer.html',{"row":row})
 
             else:
                 return render(request,'Error.html',{"cars":"!!"})
-        
+
+class AssociatedCanisters(TemplateView):
+    def get(self,request,pk=None):
+        if pk:
+            with connection.cursor() as cursor:
+                cursor.execute("select c.* from dashboard_canisters c where c.register_id=%s",[pk])
+                row=cursor.fetchall()
+            return render(request, 'canister.html',{"row":row})
+        else:
+            return render(request,'Error.html')
+
 
 
 # class displayempPage(TemplateView):

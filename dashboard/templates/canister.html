@@ -164,8 +164,8 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Customers</h4>
-                  <p class="card-category"> Customer Details</p> 
+                  <h4 class="card-title ">Canisters</h4>
+                  {% comment %} <p class="card-category"> Customer Details</p>  {% endcomment %}
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -175,24 +175,20 @@
                           Name
                         </th>
                         <th>
-                          Email
+                          Amount
                         </th>
-                        <th>
-                          Address
-                        </th>
+                        
                       </thead>
                       <tbody>
                       {% for i in row%}
                       
                         <tr>
-                          <td>
-                            {{i.0}}
-                          </td>
+                          
                           <td>
                             {{i.1}}
                           </td>
                           <td>
-                            {{i.2}}, {{i.3}}, {{i.4}}, {{i.5}}, {{i.6}}, {{i.7}}, {{i.8}}, {{i.9}}
+                            {{i.3}} grams
                           </td>
                         </tr>
                         {% endfor %}
