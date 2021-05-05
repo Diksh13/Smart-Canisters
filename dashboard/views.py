@@ -5,6 +5,10 @@ from accounts.models import *
 from accounts.views import LoginPage
 from accounts import views
 from django.db import connection
+from json import dumps
+
+
+
 class DashboardPage(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'dashboard.html', context=None)
@@ -99,7 +103,11 @@ class AssociatedCanisters(TemplateView):
             with connection.cursor() as cursor:
                 cursor.execute("select c.* from dashboard_canisters c where c.register_id=%s",[pk])
                 row=cursor.fetchall()
-            return render(request, 'canister.html',{"row":row})
+                cursor.execute("select c.c_name,c.c_actual_amount from dashboard_canisters c where c.register_id=%s",[pk])
+                row1=cursor.fetchall()
+                datajson=dumps(row1)
+                
+            return render(request, 'canister.html',{"row":row,"data":datajson})
         else:
             return render(request,'Error.html')
 
