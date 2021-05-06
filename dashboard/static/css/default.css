@@ -1,5 +1,12 @@
 .chart-container {
-    width: 40%;
+    width: 70%;
+    height: 550px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+.chart-container-customer {
+    width: 50%;
     height: 400px;
     margin: 0 auto;
+    background-color: #fff;
 }

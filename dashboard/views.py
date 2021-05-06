@@ -106,6 +106,7 @@ class AssociatedCanisters(TemplateView):
                 cursor.execute("select c.c_name,c.c_actual_amount from dashboard_canisters c where c.register_id=%s",[pk])
                 row1=cursor.fetchall()
                 datajson=dumps(row1)
+        
                 
             return render(request, 'canister.html',{"row":row,"data":datajson})
         else:

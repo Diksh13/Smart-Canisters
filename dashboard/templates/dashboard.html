@@ -19,6 +19,7 @@
   <link href="{%static 'css/material-dashboard.css' %}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{%static 'demo/demo.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/default.css'%}" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -36,7 +37,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item   ">
-            <a class="nav-link" href="./dashboard.html">
+            <a class="nav-link" href="dashboard.html">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -170,25 +171,43 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
+            
+
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
+                {% if role %}
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                   </div>
-<!--                  <p class="card-category">Used Space</p>-->
-<!--                  <h3 class="card-title">49/50-->
-<!--                    <small>GB</small>-->
+                 <p class="card-category">Used Space</p>
+                 <h3 class="card-title">49/50
+                   <small>GB</small>
                   </h3>
                 </div>
+                {% else %}
+
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                 <p class="card-title"><b>Total Customers</b></p>
+                 <h3 class="card-title">{{count_of_customers}}
+                   <!-- <small>GB</small> -->
+                  </h3>
+                </div>
+
+                {% endif %}
+
                 <div class="card-footer">
                   <div class="stats">
-<!--                    <i class="material-icons text-danger">warning</i>-->
-<!--                    <a href="javascript:;">Get More Space...</a>-->
+                   <!-- <i class="material-icons text-danger">warning</i>
+                   <a href="javascript:;">Get More Space...</a> -->
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -238,7 +257,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
 
             <div class="col-md-4">
               <div class="card card-chart">
@@ -246,7 +265,9 @@
                   <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Daily Sales</h4>
+                  <h4 class="card-title">
+                    Daily Sales
+                  </h4>
                   <p class="card-category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
                 </div>
@@ -293,7 +314,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+
+          <div class="chart-container">
+            
+            <canvas id="bar-chartcanvas"></canvas>
+        </div>
           {% comment %} <div class="row">
             <div class="col-lg-6 col-md-12"> {% endcomment %}
 <!--              <div class="card">-->
@@ -658,6 +684,9 @@
     </div>
   </div>
   <!--   Core JS Files   -->
+
+  <script src="{%static 'js/jquery.min.js' %}"></script>
+  <script src="{%static 'js/chart.min.js' %}"></script>
   <script src="{%static 'js/core/jquery.min.js' %}"></script>
   <script src="{%static 'js/core/popper.min.js' %}"></script>
   <script src="{%static 'js/core/bootstrap-material-design.min.js' %}"></script>
@@ -702,6 +731,150 @@
   <script src="{%static 'demo/demo.js' %}"></script>
   <script>
     $(document).ready(function() {
+
+// customers canister bar diagram
+
+    var data = JSON.parse("{{data|escapejs}}");
+    var labels = new Array();
+    var label = new Array();
+    var datas= new Array();
+    for (let i = 0; i < data.length; i++)
+     {
+          datas[i]=new Array();
+          for(let j=0;j<data[i].length;j++)
+          {
+            datas[i][j]=data[i][j][2];
+            labels[i]=data[i][0][0];
+            label[j]=data[0][j][1];
+          }
+    }
+    // transposing datas matrix
+    const arr=datas;
+    const transpose = arr => {
+   const res = [];
+   arr.forEach((el, ind) => {
+      el.forEach((elm, index) => {
+         res[index] = res[index] || [];
+         res[index][ind] = elm;
+
+      });
+   });
+   return res;
+};
+canister_amt=transpose(arr)
+
+    var ctx = $("#bar-chartcanvas");
+
+    var data = {
+    labels: labels,
+    datasets: [{
+            label:label[0],
+            data: canister_amt[0],
+            backgroundColor: [
+                "red","red","red","red","red"
+            ],
+            borderColor: [
+                "rgba(10, 20, 30, 1)",
+                "rgba(10, 20, 30, 1)"
+            ],
+            borderWidth: 1
+        
+      },
+
+        {
+            label:label[1],
+            data: canister_amt[1],
+            backgroundColor: [
+                "green","green","green","green","green"
+                
+            ],
+            borderColor: [
+                "rgba(10, 20, 30, 1)",
+                "rgba(10, 20, 30, 1)"
+            ],
+            borderWidth: 1
+        },
+        {
+            label:label[2],
+            data: canister_amt[2],
+            backgroundColor: [
+                "lightblue","lightblue","lightblue","lightblue","lightblue"
+            ],
+            borderColor: [
+                "rgba(10, 20, 30, 1)",
+                "rgba(10, 20, 30, 1)"
+            ],
+            borderWidth: 1
+        },
+        {
+            label:label[3],
+            data: canister_amt[3],
+            backgroundColor: [
+                "purple","purple","purple","purple","purple"
+            ],
+            borderColor: [
+                "rgba(10, 20, 30, 1)",
+                "rgba(10, 20, 30, 1)"
+            ],
+            borderWidth: 1
+        },
+        {
+            label:label[4],
+            data: canister_amt[4],
+            backgroundColor: [
+                "orange","orange","orange","orange","orange",
+            ],
+            borderColor: [
+                "rgba(10, 20, 30, 1)",
+                "rgba(10, 20, 30, 1)"
+            ],
+            borderWidth: 1
+        }
+
+
+    ]
+};
+
+var options = {
+    title: {
+        display: true,
+        position: "top",
+        text: "Bar Graph",
+        fontSize: 18,
+        fontColor: "#111"
+    },
+    legend: {
+        display: true,
+        position: "bottom"
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                min: 0
+
+            }
+        }]
+    }
+};
+
+var chart = new Chart(ctx, {
+    type: "bar",
+    data: data,
+    options: options
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
       $().ready(function() {
         $sidebar = $('.sidebar');
 
