@@ -43,5 +43,42 @@ class Canisters(models.Model):
     grocery=models.ForeignKey(Grocery, on_delete=models.CASCADE)
     register=models.ForeignKey(Register, on_delete=models.CASCADE)
 
+class Alert(models.Model):
+    a_id=models.AutoField(primary_key=True)
+    c_id=models.IntegerField()
+    c_name=models.CharField(max_length=30)
+    c_max_capacity=models.IntegerField()
+    c_actual_amount=models.IntegerField()
+    grocery=models.IntegerField()
+    register=models.IntegerField()
+
+#after updating empty or low container
+
+# DELIMITER $$
+# CREATE TRIGGER after_canister_update
+#     AFTER UPDATE 
+#     ON dashboard_canisters FOR EACH ROW
+# BEGIN
+#     IF new.c_actual_amount< 0.1*new.c_max_capacity THEN
+#         INSERT INTO dashboard_alert 
+#             SET c_id = new.c_id,c_name = new.c_name,c_max_capacity=new.c_max_capacity,c_actual_amount=new.c_actual_amount,grocery = new.grocery_id,register=new.register_id;		
+#     END IF;
+# END$$    
+# DELIMITER ;
+
+#after updating full canister
+
+# DELIMITER $$
+# CREATE TRIGGER after_canister_full_update
+#     AFTER UPDATE 
+#     ON dashboard_canisters FOR EACH ROW
+# BEGIN
+#     IF new.c_actual_amount>0.1*new.c_max_capacity THEN
+#         DELETE FROM dashboard_alert 
+#             WHERE c_id = new.c_id AND register=new.register_id;
+#     END IF;
+# END$$    
+# DELIMITER ;
+
 
 # # Create your models here.

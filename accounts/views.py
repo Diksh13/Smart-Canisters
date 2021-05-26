@@ -43,13 +43,23 @@ class LoginPage(TemplateView):
                         
                         #for fetching canister details of all customers
                         canister_details=[]
+                        alerts=[]
                         for i in customers_id:
                             cursor.execute("select r.r_name,c.c_name,c.c_actual_amount from accounts_register r JOIN dashboard_canisters c on r.r_id=c.register_id where c.register_id=%s",[i])
                             row=cursor.fetchall()
                             canister_details.append(row)
                             datajson=dumps(canister_details)
+                            cursor.execute("select a.grocery,r.r_name from dashboard_alert a,accounts_register r where a.register=r.r_id and a.register=%s",[i])
+                            alert=cursor.fetchall()
+                            if alert:
+                                alerts.append(alert)
 
-                    return render(request, 'dashboard.html', {"user":user,"role":"","row":row,"count_of_customers":count_of_customers,"data":datajson})
+                        print(alerts)
+                        
+                        #for fetching Alerts & Notifications
+                        # cursor.execute("select a.grocery,r.r_name from dashboard_alert a,accounts_register r where a.register=r.r_id")
+
+                    return render(request, 'dashboard.html', {"user":user,"role":"","row":row,"count_of_customers":count_of_customers,"data":datajson,"alert":alerts})
 
             #logging in for the first time
             else:
