@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^user/(?P<pk>\d+)/$',views.UpdateAddress.as_view(),name='update_address'),
     url(r'^customer-details/(?P<pk>\d+)/$',views.AssociatedUsers.as_view(),name='customer-details'),
     url(r'^canister-details/(?P<pk>\d+)/$',views.AssociatedCanisters.as_view(),name='canister-details'),
+
     
     
     # path('display',views.displayempPage.as_view()),

@@ -114,6 +114,10 @@ class AssociatedCanisters(TemplateView):
 
 
 
+
+
+
+
 # class displayempPage(TemplateView):
 #     def get(self, request, **kwargs):
 #         emp_no = request.GET['empno']
