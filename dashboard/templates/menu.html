@@ -16,35 +16,41 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item  ">
-            <a class="nav-link" href="./dashboard.html">
+            <a class="nav-link" href="{% url 'dashboard' pk=user.r_id %}">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="{% url 'grocery-details' pk=user.r_id %}">
               <i class="material-icons">bubble_chart</i>
               <p>Grocery</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./tables.html">
+            {% if role %}
+            <a class="nav-link" href="{% url 'vendor-details' pk=user.r_id %}">
               <i class="material-icons">person</i>
-              <p>Customers</p>
+              <p>Vendor</p>
+              {% else %}
+              <a class="nav-link" href="{% url 'customer-details' pk=user.r_id %}">
+                <i class="material-icons">person</i>
+               <p>Customers</p>
+               {% endif %}
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="dashboard/EditAddress">
+            <a class="nav-link" href="{% url 'dashboard_edit_address' pk=user.r_id%}">
               <i class="material-icons">library_books</i>
               <p>Address</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <!-- <li class="nav-item ">
             <a class="nav-link" href="./icons.html">
               <i class="material-icons">content_paste</i>
               <p>Menu 4</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

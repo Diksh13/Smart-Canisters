@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.core.checks.messages import Error
+from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
 from .models import *
 from accounts.models import *
@@ -7,11 +8,13 @@ from accounts import views
 from django.db import connection
 from json import dumps
 
+from django.contrib import messages
+
 
 
 class DashboardPage(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'dashboard.html', context=None)
+    def get(self, request, pk=None):
+        return render(request, 'Error.html', context=None)
 
 
 class AddressPage(TemplateView):
@@ -52,7 +55,9 @@ class UpdateAddress(TemplateView):
                 c.country = request.POST['country']
                 c.pincode = request.POST['pincode']   
                 c.save()
-                return render(request, 'dashboard.html', {"user": user,"role":user.r_role,"address":c})
+                messages.success(request, 'Address updated successfully')
+                return redirect(request.META['HTTP_REFERER'])
+                # return render(request, 'dashboard.html', {"user": user,"role":user.r_role,"address":c})
             else:
                 v=VendorAddress.objects.get(vendor_id=pk)
                 v.v_shop = request.POST['shop']
@@ -63,7 +68,9 @@ class UpdateAddress(TemplateView):
                 v.country = request.POST['country']
                 v.pincode = request.POST['pincode']   
                 v.save()
-                return render(request, 'dashboard.html', {"user": user,"role":"","address":v})
+                messages.success(request, 'Address updated successfully')
+                # return render(request, 'dashboard.html', {"user": user,"role":"","address":v})
+                return redirect(request.META['HTTP_REFERER'])
         else:   
             return render(request, 'Error.html')
 
@@ -73,12 +80,17 @@ class EditAddressPage(TemplateView):
     def get(self, request,pk=None):
         if pk:
             user=Register.objects.get(r_id=pk)
-            if user.r_role=="customer":
-                caddress=CustomerAddress.objects.get(user_id=pk)
-                return render(request, 'EditAddress.html', {"role":"customer","address":caddress,"user":user})
-            else:
-                vaddress=VendorAddress.objects.get(vendor_id=pk)
-                return render(request, 'EditAddress.html', {"role":"","address":vaddress,"user":user})
+            with connection.cursor() as cursor:
+                    if user.r_role=="customer":
+                        cursor.execute("select * from dashboard_customeraddress where user_id=%s",[pk])
+                        row=cursor.fetchone()
+                        return render(request, 'EditAddress.html', {"role":"customer","address":row,"user":user})
+                    else:
+                        cursor.execute("select * from dashboard_vendoraddress where vendor_id=%s",[pk])
+                        row=cursor.fetchone()
+                        print(row)
+                        
+                        return render(request, 'EditAddress.html', {"role":"","address":row,"user":user})
         else:   
             return render(request, 'Error.html')
 
@@ -90,7 +102,7 @@ class AssociatedUsers(TemplateView):
             if user.r_role=="vendor":
                 vcity=VendorAddress.objects.get(vendor_id=pk)
                 with connection.cursor() as cursor:
-                    cursor.execute("select r.r_id,r.r_name,r.r_email,c.* from accounts_register r JOIN dashboard_customeraddress c on r.r_id=c.user_id where r.r_role='customer' and c.city=%s",[vcity.city])
+                    cursor.execute("select r.r_id,r.r_name,r.r_email,r_contact,c.* from accounts_register r JOIN dashboard_customeraddress c on r.r_id=c.user_id where r.r_role='customer' and c.city=%s",[vcity.city])
                     row=cursor.fetchall()
                 return render(request, 'customer.html',{"row":row})
 
@@ -114,6 +126,48 @@ class AssociatedCanisters(TemplateView):
 
 
 
+class Grocery(TemplateView):
+    def get(self,request,pk=None):
+        with connection.cursor() as cursor:
+            cursor.execute("select * from dashboard_grocery")
+            grocery=cursor.fetchall()
+            # grocery=Grocery.objects.all()
+        return render(request, 'grocery.html',{"grocery":grocery})
+
+
+class Profile(TemplateView):
+    def get(self,request,pk=None):
+        if pk:
+            with connection.cursor() as cursor:
+                cursor.execute("select * from accounts_register where r_id=%s",[pk])
+                profile=cursor.fetchone()
+            return render(request,'profile.html',{"profile":profile})
+        else:
+            return render(request,'Error.html')
+
+class UpdateProfile(TemplateView):
+    def post(self,request,pk=None):
+        if pk:
+            profile=Register.objects.get(r_id=pk)
+            profile.r_name= request.POST['username']
+            profile.r_password = request.POST['pwd'] 
+            profile.r_contact=request.POST['contact']
+            profile.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect(request.META['HTTP_REFERER'])
+        else:   
+            return render(request, 'Error.html')
+
+
+class VendorProfile(TemplateView):
+    def get(self,request,pk=None):
+        c=CustomerAddress.objects.get(user_id=pk)
+        with connection.cursor() as cursor:
+            cursor.execute("select r.r_name,r.r_contact,v.* from accounts_register r,dashboard_vendoraddress v where v.city=%s and v.vendor_id=r.r_id",[c.city])
+            row=cursor.fetchone()
+            print(row)
+        return render(request,'vendor_profile.html',{'vendor':row})
+           
 
 
 

@@ -5330,7 +5330,7 @@ tbody.collapse.show {
 
 .progress {
   display: flex;
-  height: 2rem;
+  height: 1rem;
   overflow: hidden;
   font-size: 0.75rem;
   background-color: #e9ecef;
@@ -5344,19 +5344,8 @@ tbody.collapse.show {
   justify-content: center;
   color: #ffffff;
   text-align: center;
-  /* background-color: #2196f3; */
+  background-color: #2196f3;
   transition: width 0.6s ease;
-}
-.progress-bar-success{
-  background-color: #285b2a;
-}
-
-.progress-bar-danger{
-  background-color: #ea1c0d;
-}
-
-.progress-bar-warning{
-  background-color: #ff9800;
 }
 
 .progress-bar-striped {

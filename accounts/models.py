@@ -7,6 +7,8 @@ class Register(models.Model):
     r_email = models.EmailField(max_length=30)
     r_password = models.CharField(max_length=30)
     r_role = models.CharField(max_length=10)
+    last_login=models.DateTimeField(null=True)
+    r_contact=models.CharField(max_length=10,null=True)
 
 class Login(models.Model):
     sid = models.AutoField(primary_key=True, unique=True)
@@ -14,5 +16,6 @@ class Login(models.Model):
     password = models.CharField(max_length=30)
     login_time = models.DateTimeField(null=True)
     logout_time = models.DateTimeField(null=True)
+
 
 # Create your models here.

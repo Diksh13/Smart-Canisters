@@ -14,6 +14,27 @@
   <!-- CSS Files -->
   <link href="{%static 'css/material-dashboard.css' %}" rel="stylesheet" />
   <link href="{% static 'css/default.css'%}" rel="stylesheet" />
+  <style>
+
+.progress-bar-success{
+  background-color: #40b944;
+}
+
+.progress-bar-danger{
+  background-color: #ea1c0d;
+}
+
+.progress-bar-warning{
+  background-color: #ff9800;
+}
+
+.progress {
+  height: 2rem;
+  font-size: 0.75rem;
+  width: 90%;
+  margin: auto;
+}
+  </style>
 </head>
 <body>
   <div class="wrapper ">
@@ -24,24 +45,25 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item   ">
-            <a class="nav-link" href="dashboard.html">
+            <a class="nav-link" href="#">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="{% url 'grocery-details' pk=user.r_id %}">
               <i class="material-icons">bubble_chart</i>
               <p>Grocery</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{% url 'customer-details' pk=user.r_id %}">
+            {% if role %}
+            <a class="nav-link" href="{% url 'vendor-details' pk=user.r_id %}">
               <i class="material-icons">person</i>
-                {% comment %} <p>Table List</p> {% endcomment %}
-               {% if role %}
               <p>Vendor</p>
               {% else %}
+              <a class="nav-link" href="{% url 'customer-details' pk=user.r_id %}">
+                <i class="material-icons">person</i>
                <p>Customers</p>
                {% endif %}
             </a>
@@ -50,12 +72,6 @@
             <a class="nav-link" href="{% url 'dashboard_edit_address' pk=user.r_id %}">
               <i class="material-icons">library_books</i>
               <p>Address</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#">
-              <i class="material-icons">content_paste</i>
-              <p>Menu 4</p>
             </a>
           </li>
         </ul>
@@ -86,8 +102,8 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="{% url 'profile' pk=user.r_id %}">Profile</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                 </div>
               </li>
             </ul>
@@ -98,21 +114,36 @@
 
       <div class="content">
         <div class="container-fluid">
+          {% if role %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title"><b>Canister Status</b></h4>
+                  <!-- <p class="card-category">New employees on 15th September, 2016</p> -->
+                </div>
+              <div class="card-body table-responsive" style="background-color: #fff;">
+                <br>
+
+                {% for i in canister %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar- progress-bar-striped" role="progressbar" id="progress-bar-{{ forloop.counter0 }}"
+                  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="color:black;" >
+                  <b>{{ i.3 }}% ({{i.1}}) </b>
+                  </div>
+                </div><br>
+                {% endfor %}
+
+              </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+          {% if not role%}
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                {% if role %}
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">person</i>
-                  </div>
-                 <p class="card-category">Used Space</p>
-                 <h3 class="card-title">49/50
-                   <small>GB</small>
-                  </h3>
-                </div>
-                {% else %}
-
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">person</i>
@@ -122,9 +153,6 @@
                    <!-- <small>GB</small> -->
                   </h3>
                 </div>
-
-                {% endif %}
-
                 <div class="card-footer">
                   <div class="stats">
                    <!-- <i class="material-icons text-danger">warning</i>
@@ -140,8 +168,8 @@
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-<!--                  <p class="card-category">Revenue</p>-->
-<!--                  <h3 class="card-title">$34,245</h3>-->
+                 <p class="card-title"><b>Total Vendors</b></p>
+                 <h3 class="card-title">{{ count_vendor }}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -156,8 +184,8 @@
                   <div class="card-icon">
                     <i class="material-icons">info_outline</i>
                   </div>
-<!--                  <p class="card-category">Fixed Issues</p>-->
-<!--                  <h3 class="card-title">75</h3>-->
+                 <p class="card-title"><b>Total Alerts</b></p>
+                 <h3 class="card-title">{{ count_of_alerts }}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -170,10 +198,10 @@
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">bubble_chart</i>
                   </div>
-<!--                  <p class="card-category">Followers</p>-->
-<!--                  <h3 class="card-title">+245</h3>-->
+                 <p class="card-title"><b>Total Canisters</b></p>
+                 <h3 class="card-title">5</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -183,7 +211,11 @@
               </div>
             </div>
           </div>
+        {% endif %}
 
+          {% if not role %}
+        
+          {% if data %}
           <div class="row">
             <div class="col-lg-6 col-md-12">
 
@@ -201,6 +233,7 @@
                   <table class="table table-hover">
                     
                     <tbody>
+                      
                       {% for i in alert %}
                       {% for j in i %}
                       <tr>
@@ -209,12 +242,25 @@
                       </tr>
                       {% endfor %}
                       {% endfor %}
+                      
                     </tbody> 
                   </table> 
                 </div>
               </div>
             </div>
           </div>
+          {% else %}
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="card-body table-responsive" style="background-color: #fff;">
+                <br><br>
+                <center><h1>No Customers Yet! {{mes}}</h1></center>
+                <br><br>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -230,6 +276,20 @@
   
   <script>
     $(document).ready(function() {
+      var canister_data=JSON.parse("{{canister_datajson|escapejs}}");
+      for (let i = 0; i < canister_data.length; i++)
+      {
+        var valeur = canister_data[i][3];
+        if((valeur/canister_data[i][2])*100 <=20){
+          var a='progress-bar progress-bar-danger progress-bar-striped';}
+        else if((valeur/canister_data[i][2])*100 <=50){
+        var a='progress-bar progress-bar-warning progress-bar-striped';}
+        else{
+        var a='progress-bar progress-bar-success progress-bar-striped';}
+       var name='#progress-bar-'+i;
+      $(name).css('width', valeur+'%').attr('aria-valuenow', valeur);    
+       $(name).attr('class',a);
+      }
 
 // customers canister bar diagram
 

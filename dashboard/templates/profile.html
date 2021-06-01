@@ -24,7 +24,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Address</a>
+            <a class="navbar-brand" href="javascript:;">User Profile</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -44,8 +44,8 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="{% url 'profile' pk=user.r_id %}">Profile</a>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    <a class="dropdown-item" href="{% url 'profile' pk=user.r_id %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                 </div>
               </li>
             </ul>
@@ -64,97 +64,69 @@
         {% endfor %}
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
 
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Edit Address</h4>
+                  <h4 class="card-title">Profile</h4>
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                    <form id="address-form" action="{% url 'update_address' pk=user.r_id %}" method="post" accept-charset="utf-8">
+                    <form id="profile-form" action="{% url 'update_profile' pk=user.r_id %}" method="post" accept-charset="utf-8">
                         {% csrf_token %}
                       
                   <br>
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-12">
                         <div class="form-group">
-                            {% if role %}
-                          <label class="bmd-label-floating">House No.</label>
-                          <input type="text" name="house-no" id="house-no" class="form-control" required="required" value="{{address.0}}" disabled>
-                            {% else %}
-                            <label class="bmd-label-floating">Shop No.</label>
-                          <input type="text" name="shop-no" id="shop-no" class="form-control" required="required" value="{{address.0}}" disabled >
-                      {% endif %}
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group">
-                            {% if role %}
-                          <label class="bmd-label-floating">Apartment Name</label>
-                            <input type="text" name="apartment" id="apartment" class="form-control" required="required" value="{{address.1}}">
-                        {% else %}
-                        <label class="bmd-label-floating">Shop Name</label>
-                            <input type="text" name="shop" id="shop" class="form-control" required="required" value="{{address.1}}">
-                        {% endif %}
+                            
+                          <label class="bmd-label-floating">Name</label>
+                          <input type="text" name="username" id="username" class="form-control" required="required" value="{{profile.1}}">
+                            
+                      
                         </div>
                       </div>
                     </div><br>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group" >
-                          <label class="bmd-label-floating">Street Details</label>
-                          <input type="text" name="street" id="street" class="form-control" required="required" value="{{address.2}}">
+                          <label class="bmd-label-floating">Email</label>
+                          <input type="text" name="email" id="email" class="form-control" required="required" value="{{profile.2}}" disabled>
                         </div>
                       </div>
                     </div><br>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Landmark</label>
-                          <input type="text" name="landmark" id="landmark" class="form-control" required="required" value="{{address.3}}">
+                          <label class="bmd-label-floating">Contact</label>
+                          <input type="text" name="contact" id="contact" class="form-control"  value="{{profile.6}}">
                         </div>
                       </div>
                     </div><br>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
-                          <input type="text" name="city" id="city" class="form-control" required="required" value="{{address.4}}">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="text" name="pwd" id="pwd" class="form-control" required="required" value="{{profile.3}}">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">State</label>
-                          <input type="text" name="state" id="state" class="form-control" required="required" value="{{address.5}}">
-                        </div>
-                      </div>
-                    </div>
-<br>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
-                          <input type="text" id="country"  name="country" class="form-control" required="required" value="{{address.6}}">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Pincode</label>
-                          <input type="text" name="pincode" id="pincode" class="form-control" required="required" value="{{address.7}}">
+                          <label class="bmd-label-floating">Role</label>
+                          <input type="text" name="role" id="role" class="form-control" required="required" value="{{profile.4}}" disabled>
                         </div>
                       </div>
                     </div><br>
-                    <button type="submit" class="btn btn-primary pull-left" form="address-form">Update</button>
+                    <button type="submit" class="btn btn-primary pull-left" form="profile-form">Update</button>
                     <div class="clearfix"></div>
                   
                   </form>
                 </div>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
 
             </div>
           </div>

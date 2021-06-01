@@ -1,151 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-	{% load static %}
-	<meta charset="utf-8">
-	<title>SMART-CANISTERS</title>
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="{%static 'css/sourcesanspro-font.css' %}">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{%static 'css/style.css' %}"/>
-
+  {% load static %}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Smart-Canisters
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />  
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="{%static 'css/material-dashboard.css' %}" rel="stylesheet" />
 </head>
-<body class="form-v8" >
-	<div class="page-content">
-		<div class="form-v8-content">
-			<div class="form-right">
-				<div class="tab">
-					<div class="tab-inner">
-						<button class="tablinks" onclick="openCity(event, 'sign-in')" id="defaultOpen">LOGIN</button>
-					</div>
-					<div class="tab-inner">
-						<button class="tablinks" onclick="openCity(event, 'sign-up')">REGISTER</button>
-					</div>
-				</div>
-				
- 
 
-					<form name="login" class="form-detail" action="{% url 'login-success' %}" method="post" accept-charset="utf-8">
-					
-					{% csrf_token %}
+<body background="{%static 'images/xbg_1.jpg.pagespeed.ic.R5QWIA8_nZ.webp' %}">
+	{% for message in messages %}
+      <div id="myAlert" class="alert alert-{{ message.tags }} md-0 alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+  <div class="wrapper col-md-12">
+    
+    <div class="col-md-6">
+    </div>
+    <div class="main-panel col-md-6">
+      
+      <div class="content">
+      
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
 
-					<div class="tabcontent" id="sign-in">
-						<div class="form-row">
-							<label class="form-row-inner">
-								<input type="text" name="your_email" id="your_email" class="input-text" required>
-								<span class="label">E-Mail</span>
-		  						<span class="border"></span>
-							</label>
-						</div>
-						<br>
-						<div class="form-row">
-							<label class="form-row-inner">
-								<input type="password" name="password" id="password" class="input-text" required>
-								<span class="label">Password</span>
-								<span class="border"></span>
-							</label>
-						</div>
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs col-md-12" data-tabs="tabs">
+                          <li class="nav-item col-md-6">
+                            <a class="nav-link active" href="#login" data-toggle="tab" >
+                              
+                              <center>Login</center> 
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li class="nav-item col-md-6">
+                            <a class="nav-link" href="#register" data-toggle="tab" >
+                              
+                              <center>Register</center> 
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="login">
+            
+                <form name="login" action="{% url 'login-success' %}" method="post" accept-charset="utf-8">
+                    {% csrf_token %}
+                  
+              <br><br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">E-Mail </label>
+                      <input type="email" name="your_email" id="your_email"  class="form-control" required="required">
+                        
+                  
+                    </div>
+                  </div>
+                </div><br><br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group" >
+                        
+                      <label class="bmd-label-floating">Password</label>
+                      <input type="password" name="password" id="password" class="form-control" required="required">
+                    </div>
+                  </div>
+                </div><br><br>
+                <div class="row">
+                    <div class="col-md-12">
+                <input type="submit" class="btn btn-primary pull-left"  value="LOGIN">
+                </div>
+                </div><br><br>
+                <div class="row">
+                    <div class="col-md-12">
+                     
+                    </div>
+                  </div>
+              
+              </form>
+
+                
+                    </div>
+                    <div class="tab-pane" id="register">
+
+<form id="register" action="{% url 'register-login' %}" method="post" accept-charset="utf-8">
+    {% csrf_token %}
+  
+<br>
+<div class="row">
+  <div class="col-md-12 ">
+    <div class="form-group">
+        
+      <label class="bmd-label-floating">Name</label>
+      <input type="text" name="full_name_1" id="full_name_1" class="form-control" required="required">
+        
+  
+    </div>
+  </div>
+</div><br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group" >
+      <label class="bmd-label-floating">Email</label>
+      <input type="email" name="your_email_1" id="your_email_1" class="form-control" required="required">
+    </div>
+  </div>
+</div><br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="bmd-label-floating">Contact</label>
+      <input type="text" name="contact" id="contact" class="form-control" maxlength="10" required>
+    </div>
+  </div>
+</div><br>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="bmd-label-floating">Password</label>
+      <input type="password" name="password_1" id="password_1" class="form-control" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="bmd-label-floating">Confirm Password</label>
+      <input type="password" name="comfirm_password_1" id="comfirm_password_1" class="form-control" required="required">
+    </div>
+  </div>
+</div><br>
+<div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <select name="your_role" id="your_role" required class="form-control">
+            <option selected="selected">Choose Role</option>
+            <option value="customer">Customer</option>
+            <option value="vendor">Vendor</option>
+
+        </select>
+      </div>
+    </div>
+  </div><br>
+<button type="submit" class="btn btn-primary pull-left">REGISTER</button>
+<div class="clearfix"></div>
+
+</form>
+
+                    </div>
+                </div>
+                </div>
+                        
+
+
+             
+              </div>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+setTimeout(function() {$("#myAlert").fadeOut('fast');},5000);
+
+		// $(function(){
+		//    $(".close").click(function(){
+		// 	  $("#myAlert").hide();
+		//    });
+		// });  
+                          </script>
 
 
 
-							<center style="color: red;" id="invalid">{{et}}</center>
-
-
-						<br>
-						<div class="form-row-last">
-							<input type="submit" name="register" class="register" value="LOGIN">
-							<div class="text-center p-t-90">
-						<a class="txt1" href="#" onclick="openCity(event, 'sign-up')">
-							<center>Not Registered Yet?</center>
-						</a>
-					</div>
-						</div>
-					</div>
-
-
-
-				</form>
-				<form name="register" class="form-detail" action="{% url 'register-login' %}" method="post" accept-charset="utf-8">
-					{% csrf_token %}
-
-					<div class="tabcontent" id="sign-up"  name="reg">
-						<div class="form-row">
-							<label class="form-row-inner">
-								<input type="text" name="full_name_1" id="full_name_1" class="input-text" required>
-								<span class="label">Name</span>
-		  						<span class="border"></span>
-							</label>
-						</div>
-						<div class="form-row">
-							<label class="form-row-inner">
-								<input type="text" name="your_email_1" id="your_email_1" class="input-text" required>
-								<span class="label">E-Mail</span>
-		  						<span class="border"></span>
-							</label>
-						</div>
-						<div class="form-row">
-							<label class="form-row-inner">
-								<input type="password" name="password_1" id="password_1" class="input-text" required>
-								<span class="label">Password</span>
-								<span class="border"></span>
-
-							</label>
-							<label class="form-row-inner">
-								<input type="password" name="comfirm_password_1" id="comfirm_password_1" class="input-text" required>
-								<span class="label">Comfirm Password</span>
-								<span class="border"></span>
-							</label>
-						</div>
-						<div class="form-row">
-
-                            <div class="select">
-                                <select name="your_role" id="your_role" required>
-                                    <option disabled="disabled" selected="selected">Choose Role</option>
-                                    <option value="customer">Customer</option>
-                                    <option value="vendor">Vendor</option>
-
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
-
-
-                        </div>
-						<br>
-						<div class="form-row-last">
-							<input type="submit" name="register" class="register" value="REGISTER">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<script type="text/javascript">
-		function openCity(evt, cityName) {
-		    var i, tabcontent, tablinks;
-		    tabcontent = document.getElementsByClassName("tabcontent");
-		    for (i = 0; i < tabcontent.length; i++) {
-		        tabcontent[i].style.display = "none";
-		    }
-		    tablinks = document.getElementsByClassName("tablinks");
-		    for (i = 0; i < tablinks.length; i++) {
-		        tablinks[i].className = tablinks[i].className.replace(" active", "");
-		    }
-		    document.getElementById(cityName).style.display = "block";
-		    evt.currentTarget.className += " active";
-		}
-		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
-
-		setTimeout(function() {$("#invalid").fadeOut('fast');},5000);
-	</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+  <!--   Core JS Files   -->
+  <script src="{%static 'js/core/jquery.min.js' %}"></script>
+  <script src="{%static 'js/core/popper.min.js' %}"></script>
+  <script src="{%static 'js/core/bootstrap-material-design.min.js' %}"></script>
+  <script src="{%static 'js/material-dashboard.js' %}" type="text/javascript"></script>
+  
 </body>
+
 </html>

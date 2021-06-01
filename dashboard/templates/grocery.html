@@ -24,7 +24,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Customers</a>
+            <a class="navbar-brand" href="javascript:;">Grocery</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -61,7 +61,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Customers</h4>
+                  <h4 class="card-title ">Grocery</h4>
                   {% comment %} <p class="card-category"> Customer Details</p>  {% endcomment %}
                 </div>
                 <div class="card-body">
@@ -69,35 +69,35 @@
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
+                          ID
+                        </th>
+                        <th>
                           Name
                         </th>
                         <th>
-                          Email
-                        </th>
-                      <th>
-                        Contact
+                          Amount
                         </th>
                         <th>
-                          Address
-                        </th>
+                            Price
+                          </th>
                       </thead>
                       <tbody>
-                      {% for i in row%}
+                      {% for i in grocery%}
                       
                         <tr>
                           <td>
-                          <a href="{% url 'canister-details' pk=i.0 %}">  
+                          
+                            {{i.0}}
+                            
+                          </td>
+                          <td>
                             {{i.1}}
-                            </a>
                           </td>
                           <td>
-                            {{i.2}}
+                            {{i.2}} grams
                           </td>
                           <td>
-                            {{i.3}}
-                          </td>
-                          <td>
-                            {{i.4}}, {{i.5}}, {{i.6}}, {{i.7}}, {{i.8}}, {{i.9}}, {{i.10}}, {{i.11}}
+                            Rs. {{i.3}}
                           </td>
                         </tr>
                         {% endfor %}

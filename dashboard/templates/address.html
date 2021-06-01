@@ -16,6 +16,14 @@
                         </head>
                         
                         <body class>
+                          {% for message in messages %}
+                          <div id="myAlert" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{ message }}
+                            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            {% endfor %}
                           <div class="wrapper ">
                             <div class="main-panel">
                               
@@ -29,12 +37,12 @@
                                           <p class="card-category">Complete your profile</p>
                                         </div>
                                         <div class="card-body">
-                                                <form id="address-form" action="{% url 'user_dashboard' pk=user.r_id %}" method="post" accept-charset="utf-8">
+                                                <form id="address-form" action="{% url 'user_dashboard' pk=user_id %}" method="post" accept-charset="utf-8">
                                                 {% csrf_token %}
                                           <br>
                                             <div class="row">
                                               <div class="col-md-4">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                     {% if role %}
                                                   <label class="bmd-label-floating">House No.</label>
                                                   <input type="text" name="house-no" id="house-no" class="form-control" required="required">
@@ -45,7 +53,7 @@
                                                 </div>
                                               </div>
                                               <div class="col-md-8">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                     {% if role %}
                                                   <label class="bmd-label-floating">Apartment Name</label>
                                                     <input type="text" name="apartment" id="apartment" class="form-control" required="required">
@@ -58,7 +66,7 @@
                                             </div><br>
                                             <div class="row">
                                               <div class="col-md-12">
-                                                <div class="form-group form-control" >
+                                                <div class="form-group" >
                                                   <label class="bmd-label-floating">Street Details</label>
                                                   <input type="text" name="street" id="street" class="form-control" required="required">
                                                 </div>
@@ -66,7 +74,7 @@
                                             </div><br>
                                             <div class="row">
                                               <div class="col-md-12">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                   <label class="bmd-label-floating">Landmark</label>
                                                   <input type="text" name="landmark" id="landmark" class="form-control" required="required">
                                                 </div>
@@ -74,13 +82,13 @@
                                             </div><br>
                                             <div class="row">
                                               <div class="col-md-6">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                   <label class="bmd-label-floating">City</label>
                                                   <input type="text" name="city" id="city" class="form-control" required="required">
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                   <label class="bmd-label-floating">State</label>
                                                   <input type="text" name="state" id="state" class="form-control" required="required">
                                                 </div>
@@ -89,13 +97,13 @@
                         <br>
                                             <div class="row">
                                               <div class="col-md-6">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                   <label class="bmd-label-floating">Country</label>
                                                   <input type="text" id="country"  name="country" class="form-control" required="required">
                                                 </div>
                                               </div>
                                               <div class="col-md-6">
-                                                <div class="form-group form-control">
+                                                <div class="form-group">
                                                   <label class="bmd-label-floating">Pincode</label>
                                                   <input type="text" name="pincode" id="pincode" class="form-control" required="required">
                                                 </div>
@@ -126,7 +134,14 @@
                           <script src="{%static 'js/core/popper.min.js' %}"></script>
                           <script src="{%static 'js/core/bootstrap-material-design.min.js' %}"></script>
                           <script src="{%static 'js/material-dashboard.js' %}" type="text/javascript"></script>
-                          
+                          <script>
+
+		$(function(){
+		   $(".close").click(function(){
+			  $("#myAlert").hide();
+		   });
+		});  
+                          </script>
                         </body>
                         
                         </html>
