@@ -7,6 +7,15 @@
   <title>
     Smart-Canisters
   </title>
+  <style>
+   
+    body{
+      background-repeat: no-repeat;
+  background-image:url("{%static 'images/f.jpeg' %}");
+  width:100%;
+  
+    }
+    </style>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />  
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -15,7 +24,7 @@
   <link href="{%static 'css/material-dashboard.css' %}" rel="stylesheet" />
 </head>
 
-<body background="{%static 'images/xbg_1.jpg.pagespeed.ic.R5QWIA8_nZ.webp' %}">
+<body style="background-color: #ffffff;">
 	{% for message in messages %}
       <div id="myAlert" class="alert alert-{{ message.tags }} md-0 alert-dismissible fade show" role="alert">
         <strong>Message : </strong> {{ message }}
@@ -27,6 +36,7 @@
   <div class="wrapper col-md-12">
     
     <div class="col-md-6">
+
     </div>
     <div class="main-panel col-md-6">
       
@@ -37,8 +47,12 @@
             <div class="col-md-3">
 
             </div>
+
             <div class="col-md-7">
-              <div class="card">
+              <br><br><br>
+              <div class="card" style="
+                box-shadow: 0 1px 4px 0 rgb(0, 0, 0);
+            ">
                 <div class="card-header card-header-tabs card-header-primary">
                     <div class="nav-tabs-navigation">
                       <div class="nav-tabs-wrapper">
@@ -178,7 +192,6 @@
               </div>
             </div>
             <div class="col-md-2">
-
             </div>
           </div>
         </div>
