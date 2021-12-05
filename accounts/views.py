@@ -8,7 +8,7 @@ from dashboard.models import *
 from datetime import datetime
 from django.db import connection
 from json import dumps
-import requests
+# import requests
 from django.contrib import messages
 
 class IndexPage(TemplateView):

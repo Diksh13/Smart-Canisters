@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livereload',
     'django.contrib.staticfiles',
     'accounts',
     'dashboard',
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'SmartCanisters.urls'
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'dashboard.template_context.get_filters',
+                'dashboard.template_context.abc',
             ],
         },
     },
@@ -90,7 +93,7 @@ DATABASES = {
     'HOST': 'localhost',
     'PORT': '3306',
     'USER': 'smartcanisters',
-    'PASSWORD': 'smartcanisters',
+    'PASSWORD': 'Sm@rt123',
     }
 }
 
